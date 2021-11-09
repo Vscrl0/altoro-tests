@@ -12,7 +12,7 @@ Feature:Transfer of funds
     |amount|fromAccount|toAccount|
     |"2.25"|"CORPORATE"|"CHECKING"|
     |"0.01"|"CHECKING" |"CORPORATE"|
-    |"2.0"   |"CHECKING" |"CORPORATE"|
+    |"2.0" |"CHECKING" |"CORPORATE"|
 
   Scenario Outline: Failed transfer
     Given I am logged in
@@ -20,7 +20,7 @@ Feature:Transfer of funds
     When I transfer amount <amount> from account <fromAccount> to account <toAccount>
     Then I will receive an error alert
     Examples:
-    |amount|fromAccount|toAccount|
-    |"-0.01"|"CORPORATE"|"CHECKING" |
+    |amount |fromAccount|toAccount |
+    |"-0.01"|"CHECKING"|"CHECKING"|
     |"0"    |"CHECKING" |"CORPORATE"|
     |""     |"CORPORATE"|"CHECKING" |

@@ -1,13 +1,13 @@
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
+import io.cucumber.java.AfterAll;
+import io.cucumber.java.BeforeAll;
 
 public class BeforeAndAfter {
-    @Before
-    public void setBrowser() {
+    @BeforeAll
+    public static void setBrowser() {
         Browser.useFirefox();
     }
-    @After
-    public void cleanUp() {
+    @AfterAll
+    public static void cleanUp() {
         Browser.quit();
     }
 }

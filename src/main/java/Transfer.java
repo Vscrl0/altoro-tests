@@ -32,12 +32,15 @@ public class Transfer {
 
     @Given("I am logged in")
     public void iAmLoggedIn() {
-        Pages.loginPage().goTo();
-        Pages.loginPage().signIn("admin", "admin");
+        Pages.homePage().goTo();
+        if(!Pages.navBar().isLoggedIn()){
+            Pages.loginPage().goTo();
+            Pages.loginPage().signIn("admin", "admin");
+        }
     }
 
     @Then("I will receive an error alert")
     public void iWillReceiveAnErrorAlert() {
-        Assert.assertTrue(Pages.transferPage().isAlertPresent());
+        Assert.assertTrue(Browser.isAlertPresent());
     }
 }

@@ -6,6 +6,7 @@ public class BeforeAndAfter {
     public static void setBrowser() {
         Browser.useFirefox();
     }
+
     @AfterAll
     public static void cleanUp() {
         Browser.quit();

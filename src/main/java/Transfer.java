@@ -14,12 +14,12 @@ public class Transfer {
     @When("I transfer amount {string} from account {string} to account {string}")
     public void iTransferAmountFromAccountToAccount(String amount, String fromAccount, String toAccount) {
         Pages.transferPage().transfer(amount, Account.selectAccount(fromAccount), Account.selectAccount(toAccount));
-        try{
+        try {
             Pages.transferPage().getSuccessMessage();
-            if(!Pages.transferPage().getSuccessMessage().equals("")) {
+            if (!Pages.transferPage().getSuccessMessage().equals("")) {
                 transferSuccess = amount + " was successfully transferred from Account " + Account.selectAccount(fromAccount).getId() + " into Account " + Account.selectAccount(toAccount).getId();
             }
-        }catch(Exception ignored){
+        } catch (Exception ignored) {
 
         }
     }
@@ -33,7 +33,7 @@ public class Transfer {
     @Given("I am logged in")
     public void iAmLoggedIn() {
         Pages.homePage().goTo();
-        if(!Pages.navBar().isLoggedIn()){
+        if (!Pages.navBar().isLoggedIn()) {
             Pages.loginPage().goTo();
             Pages.loginPage().signIn("admin", "admin");
         }

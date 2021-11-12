@@ -3,8 +3,10 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
+
 public class Transfer {
     private String transferSuccess;
+    private String amount;
 
     @Given("I am at the transfer funds page")
     public void iAmAtTheTransferFundsPage() {
@@ -16,9 +18,8 @@ public class Transfer {
         Pages.transferPage().transfer(amount, Account.selectAccount(fromAccount), Account.selectAccount(toAccount));
         try {
             Pages.transferPage().getSuccessMessage();
-            if (!Pages.transferPage().getSuccessMessage().equals("")) {
-                transferSuccess = amount + " was successfully transferred from Account " + Account.selectAccount(fromAccount).getId() + " into Account " + Account.selectAccount(toAccount).getId();
-            }
+            this.amount = amount;
+            transferSuccess = " was successfully transferred from Account " + Account.selectAccount(fromAccount).getId() + " into Account " + Account.selectAccount(toAccount).getId();
         } catch (Exception ignored) {
 
         }
@@ -26,7 +27,8 @@ public class Transfer {
 
     @Then("I will receive a valid success message")
     public void iWillReceiveASuccessMessage() {
-        Assert.assertTrue(Pages.transferPage().getSuccessMessage().contains(transferSuccess));
+        String amountSuccess = (Pages.transferPage().getSuccessMessage() + " ").split(" ")[0];
+        Assert.assertTrue(Pages.transferPage().getSuccessMessage().contains(transferSuccess) && Double.parseDouble(amountSuccess) == Double.parseDouble(amount));
 
     }
 

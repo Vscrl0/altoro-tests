@@ -5,11 +5,11 @@ Feature:Login
   Scenario Outline:Successful login
     Given I am at the login page
     When I login using username <username> and password <password>
-    Then I will be logged in as <role>
+    Then I will be logged in
     Examples:
-      | username |  | password   |  | role    |
-      | "admin"  |  | "admin"    |  | "admin" |
-      | "jsmith" |  | "Demo1234" |  | "user"  |
+      | username |  | password   |
+      | "admin"  |  | "admin"    |
+      | "jsmith" |  | "Demo1234" |
 
   Scenario Outline:Login failure
     Given I am at the login page

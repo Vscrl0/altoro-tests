@@ -20,13 +20,9 @@ public class Login {
         Pages.loginPage().signIn(username, password);
     }
 
-    @Then("I will be logged in as {string}")
-    public void iWillBeLoggedInAs(String role) {
-        if (role.equals("admin")) {
-            Assert.assertTrue(Pages.myAccount().isAdmin());
-        } else {
-            Assert.assertFalse(Pages.myAccount().isAdmin());
-        }
+    @Then("I will be logged in")
+    public void iWillBeLoggedIn() {
+        Assert.assertTrue(Pages.navBar().isLoggedIn());
     }
 
     @Then("The login will fail")

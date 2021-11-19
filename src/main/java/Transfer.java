@@ -32,12 +32,37 @@ public class Transfer {
 
     }
 
-    @Given("I am logged in")
-    public void iAmLoggedIn() {
-        Pages.homePage().goTo();
-        if (!Pages.navBar().isLoggedIn()) {
-            Pages.loginPage().goTo();
-            Pages.loginPage().signIn("admin", "admin");
+    @Given("I am logged in as {string}")
+    public void iAmLoggedInAs(String user) {
+        String helloText;
+        String username;
+        String password;
+        Pages.myAccount().goTo();
+        switch(user){
+            case "admin": {
+                helloText = "Hello Admin User";
+                username = "admin";
+                password = "admin";
+                break;
+            }
+            case "jsmith": {
+                helloText = "Hello John Smith";
+                username = "jsmith";
+                password = "Demo1234";
+                break;
+            }
+            default: {
+                throw new IllegalArgumentException();
+            }
+        }
+        if (Pages.navBar().isLoggedIn()){
+            if(!Pages.myAccount().getHelloText().equals(helloText)){ //check assumes uniqueness of account name
+                Pages.navBar().clickLogin();
+                Pages.loginPage().goTo();
+                Pages.loginPage().signIn(username,password);
+            }
+        }else{
+            Pages.loginPage().signIn(username,password);
         }
     }
 

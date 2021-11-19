@@ -57,7 +57,6 @@ public class Transfer {
         }
         if (Pages.navBar().isLoggedIn()){
             if(!Pages.myAccount().getHelloText().equals(helloText)){ //check assumes uniqueness of account name
-                Pages.navBar().clickLogin();
                 Pages.loginPage().goTo();
                 Pages.loginPage().signIn(username,password);
             }

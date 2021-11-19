@@ -7,12 +7,7 @@ import org.junit.Assert;
 public class Login {
     @Given("I am at the login page")
     public void iAmAtTheLoginPage() {
-        Pages.homePage().goTo();
-        if (Pages.navBar().isLoggedIn()) {
-            Pages.navBar().clickLogin();
-        }
-        Pages.homePage().goTo();
-        Pages.navBar().clickLogin();
+        Pages.loginPage().goTo();
     }
 
     @When("I login using username {string} and password {string}")
